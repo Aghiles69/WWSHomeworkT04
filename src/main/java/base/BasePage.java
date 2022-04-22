@@ -131,4 +131,5 @@ public class BasePage {
 
         return element.isDisplayed();
     }
+
 }
