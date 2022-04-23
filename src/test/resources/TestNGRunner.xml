@@ -10,6 +10,11 @@
         <classes>
 <!--            <class name=""/>-->
 <!--            <class name="testAmazon.TestShoppingCartPage"/>-->
+
         </classes>
     </test>
 </suite>
+        <!--<class name="testAmazon.TestGiftCardPage"/>-->
+        <!--<class name="testAmazon.TestHappyBirthdayCardPage"/>-->
+        <!--<class name="testAmazon.TestMouseOverFuncInGCP"/>-->
+        <!--<class name="testAmazon.TestRangePricesFilters"/>-->
