@@ -11,6 +11,5 @@ public class TestPrimeBooks extends TestBasePage {
     public void selectPrimeButton() {
         Homepage homepage = new Homepage();
         BooksPage primeBooks = homepage.navigateToBooksPage();
-
     }
 }

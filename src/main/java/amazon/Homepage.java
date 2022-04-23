@@ -11,7 +11,10 @@ public class Homepage extends BasePage {
     @FindBy(xpath = "//*[@id='nav-xshop']/a[11]")
     public WebElement BooksButton;
 
-//
+    @FindBy(xpath = "//*[@id='contentGrid_933884']/div/div/div[2]/div/div/a")
+    public WebElement CelebPicksButton;
+
+
     public Homepage() {
         PageFactory.initElements(driver, this);
     }
@@ -21,6 +24,11 @@ public class Homepage extends BasePage {
         clickOnElement(BooksButton);
 
         return new BooksPage();
+    }
+    public CelebrityPicks selectCelebrityPicks() {
+        clickOnElement(CelebPicksButton);
+
+        return new CelebrityPicks();
     }
 }
 
