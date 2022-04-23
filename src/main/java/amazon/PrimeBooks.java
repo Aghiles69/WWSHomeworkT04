@@ -20,11 +20,10 @@ public class PrimeBooks extends BasePage {
         webDriverWait.until(ExpectedConditions.urlToBe(URL));
         PageFactory.initElements(driver, this);
     }
-
-    public void selectPrimeButton() {
-        clickOnElement(PrimeButton);
-    }
+    public void clickOnElement(WebElement element) {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
 
          //    Assert.
 
-}
+}}
