@@ -13,11 +13,8 @@ public class AllOptionsPage extends BasePage {
 
     private static final String URL = "https://www.amazon.com/";
 
-    @FindBy(xpath = "//*[@id=\"hmenu-content\"]/ul[1]/li[11]/a")
-    public WebElement fireTv;
-
-    @FindBy(xpath = "//*[@id=\"hmenu-content\"]/ul[6]/li[7]/a")
-    public WebElement fireTvSupport;
+    @FindBy(xpath = "//*[@id=\"hmenu-content\"]/ul[1]/li[27]/a")
+    public WebElement pharmacyButton;
 
     @FindBy(xpath = "//input[@type='search']")
     public WebElement supportSearchBar;
