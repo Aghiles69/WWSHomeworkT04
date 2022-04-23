@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
@@ -22,9 +23,9 @@ import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Set;
 
-import static com.mysql.cj.protocol.a.MysqlTextValueDecoder.getTime;
-import static org.codehaus.plexus.util.PropertyUtils.loadProperties;
+
 
 public class BasePage {
     public static WebDriver driver;
@@ -34,15 +35,15 @@ public class BasePage {
     public static Properties properties;
 
 
-    @BeforeSuite(alwaysRun = true)
-    public void reportSetup(ITestContext context) {
-        ExtentManager.setOutputDirectory(context);
-        extent = ExtentManager.getInstance();
-    }
+   // @BeforeSuite(alwaysRun = true)
+   // public void reportSetup(ITestContext context) {
+    //    ExtentManager.setOutputDirectory(context);
+    //    extent = ExtentManager.getInstance();
+   // }
+    //"https://www.amazon.com/"
     @Parameters({"browser", "url"})
     @BeforeMethod
     public void driverSetup(@Optional("chrome") String browser, @Optional("https://www.amazon.com/") String url) throws IOException {
-        properties = loadProperties(propertiesFile);
         driverInit(browser);
         driver.get(url);
         driver.manage().deleteAllCookies();
@@ -75,10 +76,18 @@ public class BasePage {
             ExtentTestManager.getTest().log(LogStatus.PASS, "TEST CASE PASSED: " + result.getName());
         }
 
-        ExtentTestManager.endTest();
-        extent.flush();
-    }
+        //ExtentTestManager.endTest();
+        //extent.flush();
 
+    }
+    @Parameters({"enabled"})
+    @AfterMethod
+    public void cleanUp(@Optional("true") String enabled) {
+        if (enabled.equalsIgnoreCase("true")) {
+            driver.close();
+            driver.quit();
+        }
+    }
 
     private static void captureScreenshot(WebDriver driver, String testName) {
         String fileName = testName + ".png";
@@ -121,15 +130,26 @@ public class BasePage {
         webDriverWait.until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(keys);
     }
-    //Assertion Method
+
     public boolean isElementVisible(WebElement element) {
         try {
             webDriverWait.until(ExpectedConditions.visibilityOf(element));
         } catch (ElementNotVisibleException elementNotVisibleException) {
-
+            elementNotVisibleException.printStackTrace();
         }
 
         return element.isDisplayed();
+    }
+    public void switchTabs() {
+        String parentHandle = driver.getWindowHandle();
+
+        Set<String> windowHandles = driver.getWindowHandles();
+
+        for (String handle : windowHandles) {
+            if (!handle.equals(parentHandle)) {
+                driver.switchTo().window(handle);
+            }
+        }
     }
 
 }

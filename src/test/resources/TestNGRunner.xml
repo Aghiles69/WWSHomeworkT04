@@ -1,15 +1,15 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 
-<suite name="Amazon Gift Cards TCs" verbose="1" >
+<suite name="TestName" verbose="1" >
 
 <parameter name="browser" value="chrome"/>
-<parameter name="url" value="https://www.amazon.com/"/>
+<parameter name="url" value="https://www.amazon.com"/>
 
     <test name="System">
         <classes>
 <!--            <class name=""/>-->
-<!--            <class name="test_amazon.TestShoppingCartPage"/>-->
+<!--            <class name="testAmazon.TestShoppingCartPage"/>-->
         </classes>
     </test>
 </suite>
